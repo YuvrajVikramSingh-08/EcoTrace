@@ -9,6 +9,7 @@ export const flashModel = genAI.getGenerativeModel({
 
 let lastApiCallTime = 0;
 const MIN_CALL_INTERVAL_MS = 2000;
+const MAX_RETRIES = 2;
 
 async function throttledCall(fn) {
   const now = Date.now();
@@ -19,7 +20,21 @@ async function throttledCall(fn) {
     );
   }
   lastApiCallTime = Date.now();
-  return fn();
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      const is429 = error?.message?.includes('429') || error?.status === 429;
+      if (is429 && attempt < MAX_RETRIES) {
+        const backoffMs = (attempt + 1) * 5000; // 5s, 10s
+        console.warn(`Rate limited, retrying in ${backoffMs / 1000}s...`);
+        await new Promise((r) => setTimeout(r, backoffMs));
+        continue;
+      }
+      throw error;
+    }
+  }
 }
 
 /**
