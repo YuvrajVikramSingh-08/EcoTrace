@@ -66,7 +66,7 @@ EcoTrace is built around four integrated modules:
 | ---------- | ----------------------- |
 | Frontend   | React 18 + Vite         |
 | Styling    | Tailwind CSS v3         |
-| AI         | Google Gemini 1.5 Flash |
+| AI         | Google Gemini 2.0 Flash |
 | Auth       | Firebase Authentication |
 | Database   | Cloud Firestore         |
 | Charts     | Recharts                |
@@ -132,7 +132,9 @@ npm run build
 ## Troubleshooting & Deployment Fixes
 
 ### ERESOLVE dependency resolution conflict on Netlify
+
 During the initial deployment, the build failed with an `ERESOLVE` peer dependency resolution error.
+
 - **Root Cause**: In `package.json`, `eslint` was pinned to `9.39.4` (v9.x) while `@eslint/js` was installed at `10.0.1` (v10.x), which expects `eslint` `10.x`.
 - **Resolution**:
   1. Downgraded `@eslint/js` to `^9.39.4` in `package.json` to align versions.
@@ -142,4 +144,3 @@ During the initial deployment, the build failed with an `ERESOLVE` peer dependen
 ## License
 
 MIT
-
