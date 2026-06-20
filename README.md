@@ -2,7 +2,7 @@
 
 > Track the trace you leave on the planet.
 
-**Live Demo:** [link to Netlify deployment]  
+**Live Demo:** https://sweet-yeot-1c1e5e.netlify.app/  
 **GitHub:** https://github.com/YuvrajVikramSingh-08/EcoTrace
 
 ---
@@ -129,6 +129,17 @@ npm run build
 - **Cloud Firestore** — User profiles, diary entries, habit logs, chat history,
   achievements, weekly reports
 
+## Troubleshooting & Deployment Fixes
+
+### ERESOLVE dependency resolution conflict on Netlify
+During the initial deployment, the build failed with an `ERESOLVE` peer dependency resolution error.
+- **Root Cause**: In `package.json`, `eslint` was pinned to `9.39.4` (v9.x) while `@eslint/js` was installed at `10.0.1` (v10.x), which expects `eslint` `10.x`.
+- **Resolution**:
+  1. Downgraded `@eslint/js` to `^9.39.4` in `package.json` to align versions.
+  2. Added a `.npmrc` file with `legacy-peer-deps=true` to instruct npm to bypass peer dependency resolution blocks during installation.
+  3. Performed clean installation and ran a successful production build check.
+
 ## License
 
 MIT
+
