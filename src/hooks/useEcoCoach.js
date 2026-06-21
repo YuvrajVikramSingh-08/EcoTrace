@@ -67,7 +67,7 @@ export function useEcoCoach() {
       if (aiError) {
         setError(aiError);
         setSending(false);
-        return;
+        return { success: false, error: aiError };
       }
 
       const aiMsg = {
@@ -83,8 +83,10 @@ export function useEcoCoach() {
       });
 
       setMessages((prev) => [...prev, aiMsg]);
+      return { success: true, error: null };
     } catch (err) {
       setError(err.message);
+      return { success: false, error: err.message };
     } finally {
       setSending(false);
     }

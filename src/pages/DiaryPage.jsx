@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useDiary } from '../hooks/useDiary.js';
 import { useGamification } from '../hooks/useGamification.js';
@@ -63,7 +62,7 @@ function DiaryPage() {
 
       setParsedResult(null);
       setRawText('');
-    } catch (err) {
+    } catch {
       showToast('Failed to save entry. Please try again.', 'error');
     }
   }

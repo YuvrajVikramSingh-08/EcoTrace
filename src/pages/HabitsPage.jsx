@@ -1,8 +1,6 @@
-import { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { useState } from 'react';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../services/firebase.js';
-import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import { useHabits } from '../hooks/useHabits.js';
 import { useToast } from '../hooks/useToast.js';
@@ -14,7 +12,6 @@ import { getChallengeById } from '../data/challenges.js';
 
 function HabitsPage() {
   const { currentUser } = useAuth();
-  const { userData } = useContext(UserDataContext);
   const {
     todayCompletions, activeHabitIds, loading,
     checkInHabit, addHabit, removeHabit, createCustomHabit, getActiveHabits,

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useToast } from '../../hooks/useToast.js';
 
 function Toast() {

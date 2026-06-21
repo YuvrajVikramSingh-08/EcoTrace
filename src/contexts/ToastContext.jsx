@@ -1,6 +1,7 @@
 import { createContext, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const ToastContext = createContext(null);
 
 let toastId = 0;

@@ -4,6 +4,7 @@ import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../services/firebase.js';
 import { useAuth } from '../hooks/useAuth.js';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const UserDataContext = createContext(null);
 
 export function UserDataProvider({ children }) {

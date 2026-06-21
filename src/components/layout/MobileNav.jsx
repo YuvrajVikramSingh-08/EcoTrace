@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const MOBILE_ITEMS = [
   { to: '/dashboard', label: 'Home', icon: '📊' },
@@ -36,7 +35,5 @@ function MobileNav() {
     </nav>
   );
 }
-
-MobileNav.propTypes = {};
 
 export default MobileNav;

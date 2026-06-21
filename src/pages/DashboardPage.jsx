@@ -1,5 +1,4 @@
 import { useContext, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useDiary } from '../hooks/useDiary.js';
 import { useHabits } from '../hooks/useHabits.js';

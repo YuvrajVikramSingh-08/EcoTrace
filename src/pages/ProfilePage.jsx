@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import { useToast } from '../hooks/useToast.js';

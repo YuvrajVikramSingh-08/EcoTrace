@@ -38,6 +38,7 @@ export default [
       ],
       'react/prop-types': 'warn',
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
 ];

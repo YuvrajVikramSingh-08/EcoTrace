@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useGamification } from '../hooks/useGamification.js';
 import { useWeeklyReport } from '../hooks/useWeeklyReport.js';

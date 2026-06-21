@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { useDiary } from '../hooks/useDiary.js';
 import { useEcoCoach } from '../hooks/useEcoCoach.js';
@@ -12,7 +11,7 @@ import LoadingSpinner from '../components/shared/LoadingSpinner.jsx';
 function CoachPage() {
   const { userData } = useContext(UserDataContext);
   const { entries } = useDiary();
-  const { messages, loading, sending, error: coachError, sendMessage, clearChat } = useEcoCoach();
+  const { messages, loading, sending, sendMessage, clearChat } = useEcoCoach();
   const { checkAndUnlockBadges } = useGamification();
   const { showToast } = useToast();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -27,12 +26,10 @@ function CoachPage() {
       })),
     };
 
-    await sendMessage(text, userContext);
+    const result = await sendMessage(text, userContext);
 
-    // Check if the AI actually responded (last message should be from model)
-    // The hook sets error state if the AI call failed
-    if (coachError) {
-      showToast(coachError, 'error');
+    if (!result?.success) {
+      showToast(result?.error || 'Failed to send message', 'error');
       return;
     }
 

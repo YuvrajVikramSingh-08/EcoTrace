@@ -7,7 +7,7 @@ import { db } from '../services/firebase.js';
 import { useAuth } from './useAuth.js';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { generateWeeklyReport } from '../services/geminiService.js';
-import { getWeekRange, getToday } from '../utils/dateUtils.js';
+import { getWeekRange } from '../utils/dateUtils.js';
 
 export function useWeeklyReport() {
   const { currentUser } = useAuth();

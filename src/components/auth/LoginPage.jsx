@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks/useAuth.js';
 import AuthLayout from './AuthLayout.jsx';
 import LoadingSpinner from '../shared/LoadingSpinner.jsx';
@@ -129,7 +128,5 @@ function LoginPage() {
     </AuthLayout>
   );
 }
-
-LoginPage.propTypes = {};
 
 export default LoginPage;

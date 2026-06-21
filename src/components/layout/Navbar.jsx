@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks/useAuth.js';
 import { UserDataContext } from '../../contexts/UserDataContext.jsx';
 import { getLevelForXP, getXPProgress } from '../../data/levels.js';

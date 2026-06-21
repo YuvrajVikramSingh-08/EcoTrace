@@ -1,12 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
-  doc, setDoc, getDoc, getDocs, deleteDoc,
-  collection, query, where, orderBy, serverTimestamp,
-  runTransaction,
+  collection, query, orderBy, getDocs, deleteDoc,
+  doc, serverTimestamp, runTransaction, where,
 } from 'firebase/firestore';
 import { db } from '../services/firebase.js';
 import { useAuth } from './useAuth.js';
-import { formatDate, getToday, daysBetween } from '../utils/dateUtils.js';
+import { getToday, daysBetween } from '../utils/dateUtils.js';
 
 export function useDiary() {
   const { currentUser } = useAuth();

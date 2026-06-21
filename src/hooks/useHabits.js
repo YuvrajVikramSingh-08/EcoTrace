@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext, useMemo } from 'react';
 import {
-  doc, setDoc, getDocs, deleteDoc, updateDoc,
+  doc, setDoc, getDocs,
   collection, query, where, serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../services/firebase.js';
 import { useAuth } from './useAuth.js';
 import { UserDataContext } from '../contexts/UserDataContext.jsx';
 import { getToday } from '../utils/dateUtils.js';
-import { PRESET_HABITS, getHabitById } from '../data/habits.js';
+import { getHabitById } from '../data/habits.js';
 
 export function useHabits() {
   const { currentUser } = useAuth();
@@ -17,7 +17,8 @@ export function useHabits() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const activeHabitIds = userData?.activeHabitIds || [];
+  const activeHabitIdsRaw = userData?.activeHabitIds;
+  const activeHabitIds = useMemo(() => activeHabitIdsRaw || [], [activeHabitIdsRaw]);
 
   const fetchTodayCompletions = useCallback(async () => {
     if (!currentUser) return;

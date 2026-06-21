@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Sidebar from './Sidebar.jsx';
 import Navbar from './Navbar.jsx';
 import MobileNav from './MobileNav.jsx';
