@@ -1,12 +1,15 @@
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import StatsCards from './StatsCards.jsx';
-import CarbonTrendChart from './CarbonTrendChart.jsx';
-import CategoryPieChart from './CategoryPieChart.jsx';
-import NationalComparison from './NationalComparison.jsx';
 import WeeklyReportCard from './WeeklyReportCard.jsx';
 import VirtualTree from '../gamification/VirtualTree.jsx';
 import CarbonSavingsBank from '../gamification/CarbonSavingsBank.jsx';
 import XPBar from '../gamification/XPBar.jsx';
+import LoadingSpinner from '../shared/LoadingSpinner.jsx';
+
+const CarbonTrendChart = React.lazy(() => import('./CarbonTrendChart.jsx'));
+const CategoryPieChart = React.lazy(() => import('./CategoryPieChart.jsx'));
+const NationalComparison = React.lazy(() => import('./NationalComparison.jsx'));
 
 function Dashboard({
   todayCO2 = 0,
@@ -37,11 +40,17 @@ function Dashboard({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left column */}
         <div className="lg:col-span-2 space-y-6">
-          <CarbonTrendChart data={trendData} />
+          <Suspense fallback={<div className="glass-card h-[300px] flex items-center justify-center"><LoadingSpinner size="md" /></div>}>
+            <CarbonTrendChart data={trendData} />
+          </Suspense>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <CategoryPieChart data={categoryData} />
-            <NationalComparison userAvg={userAvg} />
+            <Suspense fallback={<div className="glass-card h-[300px] flex items-center justify-center"><LoadingSpinner size="md" /></div>}>
+              <CategoryPieChart data={categoryData} />
+            </Suspense>
+            <Suspense fallback={<div className="glass-card h-[300px] flex items-center justify-center"><LoadingSpinner size="md" /></div>}>
+              <NationalComparison userAvg={userAvg} />
+            </Suspense>
           </div>
 
           <WeeklyReportCard
